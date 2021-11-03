@@ -1,20 +1,25 @@
 import requests
-import hashlib
-import os
-import sys
-# from rauth import OAuth2Service
 from pprint import pprint
 from datetime import datetime, timedelta
-
-
+import yaml
+import os
+import sys
+import shutil
 
 
 class WAKATIME:
 
     prefix = "https://wakatime.com/api/v1/"
-    private_key = "4661d281-417d-4f74-a811-00264d42dc39"
+    private_key = ""
 
-    def __init__(self):
+
+    def __init__(self, private_key):
+        self.private_key = private_key
+
+
+
+    def get(self):
+
         url = self.prefix+'users/current/durations'
         params = {
             'date': datetime.today() - timedelta(days=1),
